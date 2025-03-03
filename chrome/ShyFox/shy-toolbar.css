@@ -240,6 +240,9 @@ Tab bar has been transformed into vertical toolbar on the right side of the wind
     /* limit toolbar items width */
     & > toolbarbutton {margin-left: 1px !important;}
     & > *:not(#tabbrowser-tabs) {max-width: var(--toolbar-button-wdt) !important;}
+
+    /* omit margin */
+    & > .toolbaritem-combined-buttons {margin-inline: 0 !important;}
   }
   
   /* styles for extensions button */

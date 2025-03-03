@@ -194,8 +194,8 @@ Styles for dialogs e.g. "confirm deleting extension"
     position: fixed;
     z-index: -1;
     
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     
     left: 0px;
     top: 0px;
@@ -566,6 +566,13 @@ File Edit View History Bookmarks Tools Help
 * {
   border: 0px solid transparent; 
   outline: 0px solid transparent;
+}
+
+/* background color fix */
+#browser:not(.browser-toolbox-background) {
+  :root[lwtheme] & {
+    background-image: none !important;
+  }
 }
 
 /*
