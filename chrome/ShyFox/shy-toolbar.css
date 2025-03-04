@@ -16,6 +16,7 @@ Tab bar has been transformed into vertical toolbar on the right side of the wind
 /* hide some things */
 #tabbrowser-tabs,                       /* native tabs            */
 #alltabs-button,                        /* all tabs button        */
+.private-browsing-indicator-with-label,
 #private-browsing-indicator-with-label, /* private mode indicator */
 .titlebar-spacer
 
@@ -129,6 +130,9 @@ Tab bar has been transformed into vertical toolbar on the right side of the wind
       cursor: vertical-text !important;
     }
   }
+
+  /* omit margin */
+  & > .toolbaritem-combined-buttons {margin-inline: 0 !important;}
 }
 
 /* space for window controls */
@@ -241,8 +245,6 @@ Tab bar has been transformed into vertical toolbar on the right side of the wind
     & > toolbarbutton {margin-left: 1px !important;}
     & > *:not(#tabbrowser-tabs) {max-width: var(--toolbar-button-wdt) !important;}
 
-    /* omit margin */
-    & > .toolbaritem-combined-buttons {margin-inline: 0 !important;}
   }
   
   /* styles for extensions button */
