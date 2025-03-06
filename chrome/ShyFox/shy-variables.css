@@ -65,7 +65,7 @@ Values of these variables can be changed safely and most likely nothing will bre
 /* accent color toggle */
 :root{--shy-color: var(--shy-accent-color)}
 
-@media (-moz-bool-pref: "shyfox.fill.accent.with.icons.fill.color"){
+@media -moz-pref("shyfox.fill.accent.with.icons.fill.color"){
   :root{--shy-color: var(--toolbar-color, var(--shy-accent-color)) !important;}
 }
 

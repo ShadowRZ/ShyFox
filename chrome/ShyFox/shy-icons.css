@@ -33,7 +33,7 @@ Monochrome icons for some extensions
 
 */
 
-@media (-moz-bool-pref: "shyfox.enable.ext.mono.toolbar.icons") {
+@media -moz-pref("shyfox.enable.ext.mono.toolbar.icons") {
 
   /* Userchrome Toggle => sidebar icon */
   :is(.webextension-browser-action,
@@ -104,7 +104,7 @@ Monochrome icons for some extensions
 
 /* context menu */
 
-@media (-moz-bool-pref: "shyfox.enable.ext.mono.context.icons") {
+@media -moz-pref("shyfox.enable.ext.mono.context.icons") {
   #contentAreaContextMenu, #toolbar-context-menu, #unified-extensions-context-menu{
     /* ublock */
     menuitem[id*="ublock0_raymondhill_net-menuitem-_uBlock0-"]{
@@ -336,7 +336,7 @@ Monochrome icons for some extensions
   &:not(:is(menu, [acceltext])) {padding-right: 0px !important;}
 }
 
-@media (-moz-bool-pref: "shyfox.enable.context.menu.icons") {
+@media -moz-pref("shyfox.enable.context.menu.icons") {
   
   /* in page context menu */
   #contentAreaContextMenu{

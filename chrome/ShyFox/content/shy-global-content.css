@@ -22,7 +22,7 @@ Styles for some other things stylable in userContent.css
 }
 
 /* simple translate icon */
-@media (-moz-bool-pref: "shyfox.enable.ext.mono.context.icons") {
+@media -moz-pref("shyfox.enable.ext.mono.context.icons") {
   .simple-translate-button {
     background-image: none !important;
     &::before {

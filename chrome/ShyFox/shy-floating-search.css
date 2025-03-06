@@ -6,7 +6,7 @@ Cool floating search panel
 */
 
 /* about:config setting */
-@media not (-moz-bool-pref: "shyfox.disable.floating.search") { 
+@media not -moz-pref("shyfox.disable.floating.search") { 
   
   /* styles for urlbar */
   #urlbar[breakout-extend]{

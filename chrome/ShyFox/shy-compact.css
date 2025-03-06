@@ -30,7 +30,7 @@ menupopup > :is(menuitem, menu){
 }
 
 /* large context menu */
-@media (-moz-bool-pref: "shyfox.larger.context.menu"){
+@media -moz-pref("shyfox.larger.context.menu"){
   menupopup > :is(menuitem, menu) > * {padding: 5px 0px !important;}
 }
 
@@ -45,7 +45,7 @@ menupopup > :is(menuitem, menu){
 
 */
 
-@media not (-moz-bool-pref: "shyfox.disable.compact.unified.extensions") {
+@media not -moz-pref("shyfox.disable.compact.unified.extensions") {
 
   #unified-extensions-view{
 

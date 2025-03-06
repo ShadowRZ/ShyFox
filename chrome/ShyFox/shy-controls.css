@@ -62,7 +62,7 @@ Styles for Min Max Close buttons
 }
 
 /* remove window controls by setting */
-@media (-moz-bool-pref: "shyfox.remove.window.controls") { 
+@media -moz-pref("shyfox.remove.window.controls") { 
   #main-window{
     --window-control-wdt:   0px !important;                        /* < ^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
     --buttonbox-left-hgt:   0px !important;                        /* <                             */
@@ -152,7 +152,7 @@ Styles for Min Max Close buttons
     color: var(--bt-col) !important;
   }
 
-  @media not (-moz-bool-pref: "shyfox.force.native.controls"){
+  @media not -moz-pref("shyfox.force.native.controls"){
     .titlebar-close   {list-style-image: url("../icons/gtk-window-close-symbolic.svg")    !important;}
     .titlebar-min     {list-style-image: url("../icons/gtk-window-minimize-symbolic.svg") !important;}
     .titlebar-max     {list-style-image: url("../icons/gtk-window-maximize-symbolic.svg") !important;}
@@ -166,7 +166,7 @@ Styles for Min Max Close buttons
     }
   }
   
-  @media (-moz-bool-pref: "shyfox.force.native.controls"){
+  @media -moz-pref("shyfox.force.native.controls"){
     .titlebar-close   {appearance: -moz-window-button-close    !important;}
     .titlebar-min     {appearance: -moz-window-button-minimize !important;}
     .titlebar-max     {appearance: -moz-window-button-maximize !important;}
@@ -190,7 +190,7 @@ Styles for Min Max Close buttons
       
       .titlebar-button {margin: 0px !important;}
       
-      @media not (-moz-bool-pref: "shyfox.force.native.controls"){
+      @media not -moz-pref("shyfox.force.native.controls"){
         .titlebar-buttonbox-container{
           top: 0px;
           height: var(--margin);
@@ -199,7 +199,7 @@ Styles for Min Max Close buttons
         .titlebar-button .toolbarbutton-icon {border-radius: 0 !important;}
       }
       
-      @media (-moz-bool-pref: "shyfox.force.native.controls"){
+      @media -moz-pref("shyfox.force.native.controls"){
         .titlebar-buttonbox-container{
           top: -6px;
           height: calc(var(--margin) + 6px);
@@ -276,7 +276,7 @@ Styles when GTK window controls on left or system is MacOS
 
     .titlebar-button {margin: 0px !important;}
 
-    @media not (-moz-bool-pref: "shyfox.force.native.controls"){
+    @media not -moz-pref("shyfox.force.native.controls"){
       .titlebar-buttonbox-container{
         top: 0px;
         height: var(--margin);
@@ -285,7 +285,7 @@ Styles when GTK window controls on left or system is MacOS
       .titlebar-button .toolbarbutton-icon {border-radius: 0 !important;}
     }
 
-    @media (-moz-bool-pref: "shyfox.force.native.controls"){
+    @media -moz-pref("shyfox.force.native.controls"){
       .titlebar-buttonbox-container{
         top: -6px;
         height: calc(var(--margin) + 6px);
