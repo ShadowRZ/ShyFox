@@ -33,7 +33,7 @@ Cool floating search panel
     width: 64vw !important;
 
     /* cool translucent background */
-    &:before{
+    &::backdrop{
       content: "";
       position: fixed;
       pointer-events: none;
