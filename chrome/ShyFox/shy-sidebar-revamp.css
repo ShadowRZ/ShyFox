@@ -1,0 +1,101 @@
+@media -moz-pref("sidebar.revamp") {
+
+  @media not -moz-pref("sidebar.verticalTabs") {
+    #browser #tabbrowser-tabbox {
+      margin-left: var(--margin) !important;
+    }
+  }
+  
+  @media -moz-pref("sidebar.verticalTabs") {
+    #browser #tabbrowser-tabbox {
+      margin-right: var(--toolbar-button-wdt) !important;
+    }
+  }
+  
+  #browser #tabbrowser-tabbox[sidebar-shown] {
+    margin-left: 0 !important;
+  }
+  
+  #browser #sidebar-box {
+    padding-block-end: 0 !important;
+    top: 0 !important;
+    height: unset !important;
+    margin-top: var(--top-margin) !important;
+    margin-bottom: var(--bottom-margin) !important;
+    transition: var(--transition) !important;
+    
+    #sidebar {
+      border-radius: var(--big-rounding) !important;
+    }
+  }
+  
+  #browser #sidebar-main {
+    margin-top: var(--buttonbox-right-hgt) !important;
+  }
+  
+  #browser #sidebar-main {
+    &:not(:has([expanded])) {
+      width: var(--toolbar-button-wdt) !important;
+    }
+
+    &:has([expanded]) {
+      margin-inline-end: var(--space-small) !important;
+    }
+  }
+  
+  #browser #sidebar-box browser#sidebar {
+    margin: unset !important;
+  }
+
+  moz-button[view*="view"], moz-button[extension] {
+    --button-outer-padding-inline-start: var(--toolbarbutton-outer-padding) !important;
+    --button-outer-padding-inline-end: var(--toolbarbutton-outer-padding) !important;
+    --button-size-icon: calc(var(--size-item-small) + (36px - 16px))  !important;
+    --button-padding-icon: calc((var(--tab-min-height) - 16px) / 2) !important;
+    --button-outer-padding-block-start: 0 !important;
+    --button-outer-padding-block-end: 0 !important;
+    --button-border-radius: var(--rounding) !important;
+    margin-inline: var(--toolbarbutton-outer-padding) !important;
+    margin-block: 3px !important;
+  }
+  
+  moz-button[view="viewCustomizeSidebar"] {
+    margin-bottom: 5px !important;
+  }
+  
+  /* Native vertical tabs */
+  @media -moz-pref("sidebar.verticalTabs") {
+    #vertical-tabs {
+      .tab-background {
+        margin-inline-start: var(--toolbar-start-end-padding) !important;
+        margin-inline-end: var(--toolbarbutton-outer-padding) !important;
+      }
+      
+      .tab-content {
+        padding-inline: calc(var(--tab-inline-padding) - var(--tab-inner-inline-margin) + var(--toolbar-start-end-padding)) !important;
+      }
+      
+      #tabs-newtab-button {
+        margin-inline-start: var(--toolbar-start-end-padding) !important;
+        margin-inline-end: var(--toolbarbutton-outer-padding) !important;
+      }
+      
+      #tabbrowser-tabs[expanded] {
+        .tabbrowser-tab {
+          padding-block: 1px 2px !important;
+        }
+        
+        &:first-child {
+          padding-block: 3px 2px !important;
+        }
+      }
+    }
+  }
+  
+  /* When in Clean mode*/
+  #main-window[titlepreface*="‍"]{
+    #sidebar-main, #sidebar-launcher-splitter, #sidebar-box, #sidebar-splitter {
+      display: none !important;
+    }
+  }
+}
