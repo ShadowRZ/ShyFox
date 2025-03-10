@@ -49,10 +49,15 @@ Navigation bar on top of the window
   border-top: 0px solid transparent !important;
   
   top: 0px;
-  left: var(--left-margin) !important;
   right: auto !important;
   
   & > * {opacity: var(--dyn-opct);}
+}
+
+@media not (-moz-bool-pref: "sidebar.revamp") {
+  #nav-bar {
+    left: var(--left-margin) !important;
+  }
 }
 
 /* centered navbar text */

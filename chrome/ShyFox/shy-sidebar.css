@@ -118,144 +118,149 @@ Styles for sidebar
 
 */
 
-/* activate style when sidebar hidden or clean mode enabled (and not in customizing page) */
-#main-window:is([titlepreface*="᠎"], [titlepreface*="‍"]):not([customizing]){
-  
-  /* styles for both sidebar and bookmaarks toolbar */
-  #sidebar-box,
-  #PersonalToolbar
-  {
-    z-index: 2 !important;
-    width: var(--sdbr-wdt) !important;
-    
-    left: calc(
-      var(--left-margin) 
-      + var(--panel-hide-ldg) 
-      - var(--sdbr-wdt)
-    ) !important;
+@media not (-moz-bool-pref: "sidebar.revamp") {
+  /* activate style when sidebar hidden or clean mode enabled (and not in customizing page) */
+  #main-window:is([titlepreface*="᠎"], [titlepreface*="‍"]):not([customizing]){
 
-    border-radius: var(--big-rounding) !important;
-    
-    /* hover target (invisible box between window edge and panel) */
-    &::before{
-      content: "";
-      position: absolute;
-      z-index: -999;
-      background-color: var(--debug-col);
-      
-      width: 150%;
-      height: 100%;
-      right: 0px;
-      top: 0px;
-    }
-    
-    /* make all panel content invisible (it will visible when hover) */
-    & > * {
-      transition: var(--transition) !important;
-      opacity: 0;
-    }
-  }
-  
-  /* styles for sidebar */
-  #sidebar-box{    
-    height: calc(
-      100vh
-      - var(--bookmarks-hgt)
-      - var(--little-gap)
-      - var(--top-margin)
-      - var(--bottom-margin)
-      - var(--margin) * 2
-    ) !important;
-    
-    top: calc(
-      var(--top-margin)
-      + var(--margin)
-      + var(--bookmarks-hgt) + var(--little-gap)
-    );
-    
-    /* indication bar (line on window edge) */
-    &::after{
-      content: "";
-      position: absolute;
-      transition: var(--transition);
-      
+    /* styles for both sidebar and bookmaarks toolbar */
+    #sidebar-box,
+    #sidebar-main,
+    #PersonalToolbar
+    {
+      z-index: 99 !important;
+      width: var(--sdbr-wdt) !important;
+
       left: calc(
-        100% 
-        - var(--panel-hide-ldg) 
-        - var(--margin) 
-        + var(--hide-bar-padding)
-      );
-      
-      width: calc(var(--margin) - var(--hide-bar-padding) * 2 );
+        var(--left-margin) 
+        + var(--panel-hide-ldg) 
+        - var(--sdbr-wdt)
+        ) !important;
+
+      border-radius: var(--big-rounding) !important;
+
+      /* hover target (invisible box between window edge and panel) */
+      &::before{
+        content: "";
+        position: absolute;
+        z-index: -999;
+        background-color: var(--debug-col);
+
+        width: 150%;
+        height: 100%;
+        right: 0px;
+        top: 0px;
+      }
+
+      /* make all panel content invisible (it will visible when hover) */
+      & > * {
+        transition: var(--transition) !important;
+        opacity: 0;
+      }
+    }
+
+    /* styles for sidebar */
+    #sidebar-box, #sidebar-main{    
       height: calc(
-        100% 
-        - var(--hide-bar-wdt-pad) 
-        + var(--bookmarks-hgt)
-        + var(--little-gap)
+        100vh
+        - var(--bookmarks-hgt)
+        - var(--little-gap)
+        - var(--top-margin)
+        - var(--bottom-margin)
+        - var(--margin) * 2
+        ) !important;
+
+      top: calc(
+        var(--top-margin)
+        + var(--margin)
+        + var(--bookmarks-hgt) + var(--little-gap)
       );
-      
-      bottom: calc(var(--hide-bar-wdt-pad) / 2);
-      border-radius: var(--rounding);
-      background-color: var(--bt-col);
-      opacity: var(--hide-bar-opct);
-    }
-  }
-  
-  /* add rounded corners to sidebar content */
-  #sidebar {border-radius: var(--big-rounding) !important;}
-  
-  /* styles for bookmarks */
-  #PersonalToolbar{
-    top: calc(var(--top-margin) + var(--margin));
-    margin-left: 0px !important;
-    overflow: visible !important;
 
-    padding-inline: 2px !important;
-    
-    /* hover target between sidebar and bookmarks toolbar */
-    &::after{
-      content: "";
-      z-index: 1;
-      position: absolute;
-      
-      background-color: var(--debug-col);
-      opacity: 1 !important;
-      
-      height: calc(var(--little-gap) + 4px);
-      bottom: calc(-2px - var(--little-gap));
-      
-      width: 150%;
-      
-      right: 0px;
-    }
-  }
+      /* indication bar (line on window edge) */
+      &::after{
+        content: "";
+        position: absolute;
+        transition: var(--transition);
 
-  /* show sidebar on hover or focus (if not in clean mode) */
-  &:not([titlepreface*="‍"]):has(
+        left: calc(
+          100% 
+          - var(--panel-hide-ldg) 
+          - var(--margin) 
+          + var(--hide-bar-padding)
+          );
+
+        width: calc(var(--margin) - var(--hide-bar-padding) * 2 );
+        height: calc(
+          100% 
+          - var(--hide-bar-wdt-pad) 
+          + var(--bookmarks-hgt)
+          + var(--little-gap)
+        );
+
+        bottom: calc(var(--hide-bar-wdt-pad) / 2);
+        border-radius: var(--rounding);
+        background-color: var(--bt-col);
+        opacity: var(--hide-bar-opct);
+      }
+    }
+
+    /* add rounded corners to sidebar content */
+    #sidebar{border-radius: var(--big-rounding) !important;}
+
+    /* styles for bookmarks */
+    #PersonalToolbar{
+      top: calc(var(--top-margin) + var(--margin));
+      margin-left: 0px !important;
+      overflow: visible !important;
+
+      padding-inline: 2px !important;
+
+      /* hover target between sidebar and bookmarks toolbar */
+      &::after{
+        content: "";
+        z-index: 1;
+        position: absolute;
+
+        background-color: var(--debug-col);
+        opacity: 1 !important;
+
+        height: calc(var(--little-gap) + 4px);
+        bottom: calc(-2px - var(--little-gap));
+
+        width: 150%;
+
+        right: 0px;
+      }
+    }
+
+    /* show sidebar on hover or focus (if not in clean mode) */
+    &:not([titlepreface*="‍"]):has(
     #sidebar-box:hover,
     #sidebar-box:focus-within,
+    #sidebar-main:hover,
+    #sidebar-main:focus-within,
     #PersonalToolbar:hover,
     #PersonalToolbar *:not(#firefox-view-button)[open],
     #sidebar-switcher-target[aria-expanded="true"]
-  ) {
-    #sidebar-box,
-    #PersonalToolbar
-    {
-      opacity: 1 !important;
-      left: calc(var(--left-margin) + var(--margin)) !important;
-      
-      background-color: var(--bg-col) !important;
-      
-      border: var(--outline) !important;
-      outline: var(--shadow) !important;
-            
-      &::after{opacity: 0}
-      
-      & > * {opacity: var(--dyn-opct);}
+    ) {
+      #sidebar-box,
+      #sidebar-main,
+      #PersonalToolbar
+      {
+        opacity: 1 !important;
+        left: calc(var(--left-margin) + var(--margin)) !important;
+
+        background-color: var(--bg-col) !important;
+
+        border: var(--outline) !important;
+        outline: var(--shadow) !important;
+
+        &::after{opacity: 0}
+
+        & > * {opacity: var(--dyn-opct);}
+      }
     }
   }
 }
-
 /*
 
 --- CUSTOMIZING PAGE --------------------------------------------------------------------------------------------------------------------------------
@@ -286,50 +291,53 @@ Styles when Sidebery is not opened
 
 */
 
-/* hide sidebar header when Sidebery opened */
-#main-window:not([customizing]):has(
-  #sidebar-box:not([hidden])[sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]
-) { 
-  #sidebar-header {display: none} 
-}
-
-/* hide sidebar button on toolbar when sidebar opened */
-#main-window:not([customizing]):has(
-  #sidebar-box:not([hidden])
-) { 
-  #sidebar-button {display: none}
-}
-
-/* color the sidebar button red */
-#sidebar-button .toolbarbutton-icon {
-  background-color: red !important;
-  fill: white !important;
-}
-
-/* notification when sidebar is not opened */
-#main-window[chromehidden=""]:has( 
-  #sidebar-box[hidden="true"]
-) {
-  --shyfox-string-open-sidebar: "Open sidebar!";
-  &[lang="ru"]{--shyfox-string-open-sidebar: "Откройте боковую панель!";}
-  
-  &::before{
-    content: var(--shyfox-string-open-sidebar);
-    position: fixed;
-    z-index: 9999;
-    
-    font-weight: bold;
-    
-    top: calc(var(--margin) + var(--toolbar-item-hgt));
-    left: calc(var(--margin) * 2);
-    
-    background-color: var(--tb-col);
-    color: var(--bt-col);
-    outline: 3px solid red;
-    
-    border-radius: var(--big-rounding);
-    padding: 10px;
+@media not (-moz-bool-pref: "sidebar.revamp") {
+  /* hide sidebar header when Sidebery opened */
+  #main-window:not([customizing]):has(
+    #sidebar-box:not([hidden])[sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]
+  ) { 
+    #sidebar-header {display: none} 
   }
+
+  /* hide sidebar button on toolbar when sidebar opened */
+  #main-window:not([customizing]):has(
+    #sidebar-box:not([hidden])
+  ) { 
+    #sidebar-button {display: none}
+  }
+
+  /* color the sidebar button red */
+  #sidebar-button .toolbarbutton-icon {
+    background-color: red !important;
+    fill: white !important;
+  }
+
+  /* notification when sidebar is not opened */
+  #main-window[chromehidden=""]:has( 
+    #sidebar-box[hidden="true"]
+  ) {
+    --shyfox-string-open-sidebar: "Open sidebar!";
+    &[lang="ru"]{--shyfox-string-open-sidebar: "Откройте боковую панель!";}
+
+    &::before{
+      content: var(--shyfox-string-open-sidebar);
+      position: fixed;
+      z-index: 9999;
+
+      font-weight: bold;
+
+      top: calc(var(--margin) + var(--toolbar-item-hgt));
+      left: calc(var(--margin) * 2);
+
+      background-color: var(--tb-col);
+      color: var(--bt-col);
+      outline: 3px solid red;
+
+      border-radius: var(--big-rounding);
+      padding: 10px;
+    }
+  }
+
 }
 
 /* styles when Sidebery is not opened but sidebar is */
@@ -340,9 +348,11 @@ Styles when Sidebery is not opened
   --shyfox-string-to-manage-tabs-open-sidebery: "To manage tabs, open Sidebery in this menu";
   &[lang="ru"]{--shyfox-string-to-manage-tabs-open-sidebery: "Для работы с вкладками откройте Sidebery";}
   
-  #sidebar {
-    border: var(--outline) !important;
-    margin: 0 calc(var(--margin) / 1.5) !important;
+  @media not (-moz-bool-pref: "sidebar.revamp") {
+    #sidebar {
+      border: var(--outline) !important;
+      margin: 0 calc(var(--margin) / 1.5) !important;
+    }
   }
   
   &[titlepreface*="᠎"] {#sidebar {margin-bottom: calc(var(--margin) / 1.5) !important;}}
@@ -379,76 +389,78 @@ Styles when Sidebery is not opened
   }
 }
 
-/* assign the button to move the sidebar left and right to enable and disable native tabs for emergencies */
+@media not (-moz-bool-pref: "sidebar.revamp") {
+  /* assign the button to move the sidebar left and right to enable and disable native tabs for emergencies */
 
-/* if Sidebery is not opened but sidebar is */
-#main-window:has(
-  #sidebar-box:not([hidden]):not([sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]) 
-) {
-  
-  --shyfox-string-enable-native-tabs: "Enable native tabs";
-  &[lang="ru"]{--shyfox-string-enable-native-tabs: "Включить нативные вкладки";}
-  
-  #sidebarMenu-popup #sidebar-reverse-position{
-    /* remove original text from this button */
-    .menu-text {display: none !important;}
-    
-    &::after{
-      content: var(--shyfox-string-enable-native-tabs) !important;
-      padding-inline: 5px;
-    }
-  }
-  
-  /* add rounded corners to sidebar content */
-  #sidebar {border-radius: var(--big-rounding) !important;}
-  
-  /* sidebar on left (native tabs disabled, default) */
-  &:has(#sidebar-box[style*="order: 2"]){
-    /* there is no styles */
-  }
-  
-  /* sidebar on right (native tabs enabled) */
-  &:has(#sidebar-box[style*="order: 4"]){
-    
-    /* add checkmark to button to indicate state */
-    #sidebarMenu-popup #sidebar-reverse-position {background-image: url("../icons/menu-check.svg") !important;}
-    
-    /* native tabs styling */
-    #tabbrowser-tabs{
-      --tabsbar-wdt: calc(
-        (
-          100vw
-          - var(--margin) * 2
-          - var(--left-margin)
-          - var(--right-margin)
-        ) / 1.5
-      );
-      
-      display: flex !important;
-      position: fixed !important;
-      
-      width: var(--tabsbar-wdt) !important;
-      height: 45px !important;
-      padding: 0 !important;
-      
-      left: calc(var(--left-margin) + var(--margin)) !important;
-      top:  calc(var(--top-margin)  + var(--margin)) !important;
-      
-      background-color: var(--tb-col) !important;
-      border-radius: var(--big-rounding) !important;
-      border: var(--outline) !important;
-      outline: var(--shadow) !important;
-      transition: var(--transition) !important;
-      
-      .tabbrowser-tab:not([pinned]){
-        min-width: 150px !important;
-        .tab-close-button{display: flex !important;}
+  /* if Sidebery is not opened but sidebar is */
+  #main-window:has(
+    #sidebar-box:not([hidden]):not([sidebarcommand*="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]) 
+  ) {
+
+    --shyfox-string-enable-native-tabs: "Enable native tabs";
+    &[lang="ru"]{--shyfox-string-enable-native-tabs: "Включить нативные вкладки";}
+
+    #sidebarMenu-popup #sidebar-reverse-position{
+      /* remove original text from this button */
+      .menu-text {display: none !important;}
+
+      &::after{
+        content: var(--shyfox-string-enable-native-tabs) !important;
+        padding-inline: 5px;
       }
-      
-      /* pinned tabs */
-      .tabbrowser-tab[pinned]{
-        position: initial !important;
-        margin-inline: 0px !important;
+    }
+
+    /* add rounded corners to sidebar content */
+    #sidebar {border-radius: var(--big-rounding) !important;}
+
+    /* sidebar on left (native tabs disabled, default) */
+    &:has(#sidebar-box[style*="order: 2"]){
+      /* there is no styles */
+    }
+
+    /* sidebar on right (native tabs enabled) */
+    &:has(#sidebar-box[style*="order: 4"]){
+
+      /* add checkmark to button to indicate state */
+      #sidebarMenu-popup #sidebar-reverse-position {background-image: url("../icons/menu-check.svg") !important;}
+
+      /* native tabs styling */
+      #tabbrowser-tabs{
+        --tabsbar-wdt: calc(
+          (
+            100vw
+            - var(--margin) * 2
+            - var(--left-margin)
+            - var(--right-margin)
+          ) / 1.5
+        );
+
+        display: flex !important;
+        position: fixed !important;
+
+        width: var(--tabsbar-wdt) !important;
+        height: 45px !important;
+        padding: 0 !important;
+
+        left: calc(var(--left-margin) + var(--margin)) !important;
+        top:  calc(var(--top-margin)  + var(--margin)) !important;
+
+        background-color: var(--tb-col) !important;
+        border-radius: var(--big-rounding) !important;
+        border: var(--outline) !important;
+        outline: var(--shadow) !important;
+        transition: var(--transition) !important;
+
+        .tabbrowser-tab:not([pinned]){
+          min-width: 150px !important;
+          .tab-close-button{display: flex !important;}
+        }
+
+        /* pinned tabs */
+        .tabbrowser-tab[pinned]{
+          position: initial !important;
+          margin-inline: 0px !important;
+        }
       }
     }
   }

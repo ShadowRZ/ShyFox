@@ -145,156 +145,167 @@ Tab bar has been transformed into vertical toolbar on the right side of the wind
   }
 }
 
+@media (-moz-bool-pref: "sidebar.verticalTabs") {
+  #TabsToolbar,
+  #PanelUI-menu-button,
+  #unified-extensions-button
+  {
+    margin-top: var(--buttonbox-right-hgt) !important;
+  }
+}
+
 /* 
 
 --- TOOLBAR HIDDEN ----------------------------------------------------------------------------------------------------------------------------------
 
 */
 
-/* activate style when toolbar hidden or clean mode enabled (and not in customizing page) */
-#main-window:is([titlepreface*="​"], [titlepreface*="‍"]):not([customizing]){
-  
-  /* styles for tabs toolbar and buttons */
-  #TabsToolbar,
-  #PanelUI-menu-button,
-  #unified-extensions-button
-  {
-    top: calc(
-      var(--margin) 
-      + var(--top-margin)
-    );
-    
-    right: calc(
-      var(--right-margin) 
-      + var(--panel-hide-ldg) 
-      - var(--toolbar-button-wdt)
-    );
-    
-    bottom: auto;
-    z-index: 3 !important;
-  }
-  
-  /* styles for tabs toolbar */
-  #TabsToolbar{
-    top: calc(
-      var(--margin) 
-      + var(--top-margin)
-      - 3px
-    );
+@media not (-moz-bool-pref: "sidebar.verticalTabs") {
+  /* activate style when toolbar hidden or clean mode enabled (and not in customizing page) */
+  #main-window:is([titlepreface*="​"], [titlepreface*="‍"]):not([customizing]){
 
-    border-radius: var(--big-rounding);
-    
-    /* hover target (invisible box between window edge and panel) */
-    &::before{
-      content: "";
-      position: absolute;
-      z-index: -999;
-      background-color: var(--debug-col);
-      
-      width: 500%;
-      height: 100%;
-      left: 0px;
-      top: 0px;
-    }
-    
-    /* indication bar (line on window edge) */
-    &::after{
-      content: "";
-      position: absolute;
-      transition: var(--transition);
-      
-      right: calc(
-        100% 
-        - var(--panel-hide-ldg) 
-        - var(--margin) 
-        + var(--hide-bar-padding)
-      );
-      width: calc(var(--margin) - var(--hide-bar-padding) * 2);
-      height: calc(100% - var(--hide-bar-wdt-pad));
-      top: calc(var(--hide-bar-wdt-pad) / 2);
-      
-      border-radius: var(--rounding);
-      background-color: var(--bt-col);
-      opacity: var(--hide-bar-opct);
-    }
-  }
-  
-  /* make all panel content invisible (it will visible when hover) */
-  :is(#PanelUI-menu-button, #unified-extensions-button) > *,
-  #TabsToolbar-customization-target > *:not(#tabbrowser-tabs) {
-    transition: var(--transition) !important;
-    opacity: 0;
-  }
-  
-  #TabsToolbar-customization-target{
-    /* make the toolbar height dynamic */
-    position: relative !important;
-    top: 0px !important;
-    padding-bottom: 3px !important;
-    
-    /* styled spacer */
-    toolbarspring{
-      background-color: color-mix(in srgb, var(--bt-col) 15%, var(--debug-col-2)) !important;
-      border-radius: var(--rounding) !important;
-      max-height: 1px !important;
-      padding: 1px !important;
-      scale: 0.75;
-    }
-    
-    /* limit toolbar items width */
-    & > toolbarbutton {margin-left: 1px !important;}
-    & > *:not(#tabbrowser-tabs) {max-width: var(--toolbar-button-wdt) !important;}
-
-  }
-  
-  /* styles for extensions button */
-  #unified-extensions-button {margin-top: var(--toolbar-item-hgt) !important;}
-
-  /* show toolbar on hover or focus (if not in clean mode) */
-  &:not([titlepreface*="‍"]):has(
-    #TabsToolbar:hover
-    .titlebar-buttonbox-container:not(:hover),
-    #TabsToolbar-customization-target *:not(#firefox-view-button, tab)[open],
-    #TabsToolbar-customization-target #searchbar:focus-within,
-    #PanelUI-menu-button[open],
-    #PanelUI-menu-button:hover,
-    #unified-extensions-button[open],
-    #unified-extensions-button:hover
-  ) {
+    /* styles for tabs toolbar and buttons */
     #TabsToolbar,
     #PanelUI-menu-button,
     #unified-extensions-button
     {
-      right: calc(var(--right-margin) + var(--margin));
-      
-      & > *:not(.titlebar-buttonbox-container), #TabsToolbar-customization-target > * {opacity: 1 !important;}
+      top: calc(
+        var(--margin) 
+        + var(--top-margin)
+      );
+
+      right: calc(
+        var(--right-margin) 
+        + var(--panel-hide-ldg) 
+        - var(--toolbar-button-wdt)
+      );
+
+      bottom: auto;
+      z-index: 3 !important;
     }
+
+    /* styles for tabs toolbar */
     #TabsToolbar{
-      width: calc(var(--toolbar-button-wdt) + 4px) !important;
-      padding-right: 0px !important;
-      
-      background-color: var(--tb-col) !important;
-      
-      border: var(--outline) !important;
-      outline: var(--shadow) !important;
-      
-      &::after{opacity: 0}
+      top: calc(
+        var(--margin) 
+        + var(--top-margin)
+        - 3px
+      );
+
+      border-radius: var(--big-rounding);
+
+      /* hover target (invisible box between window edge and panel) */
+      &::before{
+        content: "";
+        position: absolute;
+        z-index: -999;
+        background-color: var(--debug-col);
+
+        width: 500%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+      }
+
+      /* indication bar (line on window edge) */
+      &::after{
+        content: "";
+        position: absolute;
+        transition: var(--transition);
+
+        right: calc(
+          100% 
+          - var(--panel-hide-ldg) 
+          - var(--margin) 
+          + var(--hide-bar-padding)
+        );
+        width: calc(var(--margin) - var(--hide-bar-padding) * 2);
+        height: calc(100% - var(--hide-bar-wdt-pad));
+        top: calc(var(--hide-bar-wdt-pad) / 2);
+
+        border-radius: var(--rounding);
+        background-color: var(--bt-col);
+        opacity: var(--hide-bar-opct);
+      }
     }
-    
-    #PanelUI-menu-button,
-    #unified-extensions-button{
-      margin-right: 2px !important;
+
+    /* make all panel content invisible (it will visible when hover) */
+    :is(#PanelUI-menu-button, #unified-extensions-button) > *,
+    #TabsToolbar-customization-target > *:not(#tabbrowser-tabs) {
+      transition: var(--transition) !important;
+      opacity: 0;
     }
-  }
-  
-  /* downloads progress indicator bar */
-  &:has(#downloads-button[progress="true"]){
-    #TabsToolbar::after{
-      background: linear-gradient(
-        to top,
-        var(--shy-color) 0 var(--shy-download-pcent),
-        var(--bt-col) var(--shy-download-pcent) 100%
-      ) !important;
+
+    #TabsToolbar-customization-target{
+      /* make the toolbar height dynamic */
+      position: relative !important;
+      top: 0px !important;
+      padding-bottom: 3px !important;
+
+      /* styled spacer */
+      toolbarspring{
+        background-color: color-mix(in srgb, var(--bt-col) 15%, var(--debug-col-2)) !important;
+        border-radius: var(--rounding) !important;
+        max-height: 1px !important;
+        padding: 1px !important;
+        scale: 0.75;
+      }
+
+      /* limit toolbar items width */
+      & > toolbarbutton {margin-left: 1px !important;}
+      & > *:not(#tabbrowser-tabs) {max-width: var(--toolbar-button-wdt) !important;}
+
+    }
+
+    /* styles for extensions button */
+    #unified-extensions-button {margin-top: var(--toolbar-item-hgt) !important;}
+
+    /* show toolbar on hover or focus (if not in clean mode) */
+    &:not([titlepreface*="‍"]):has(
+      #TabsToolbar:hover
+      .titlebar-buttonbox-container:not(:hover),
+      #TabsToolbar-customization-target *:not(#firefox-view-button, tab)[open],
+      #TabsToolbar-customization-target #searchbar:focus-within,
+      #PanelUI-menu-button[open],
+      #PanelUI-menu-button:hover,
+      #unified-extensions-button[open],
+      #unified-extensions-button:hover
+    ) {
+      #TabsToolbar,
+      #PanelUI-menu-button,
+      #unified-extensions-button
+      {
+        right: calc(var(--right-margin) + var(--margin));
+
+        & > *:not(.titlebar-buttonbox-container), #TabsToolbar-customization-target > * {opacity: 1 !important;}
+      }
+      #TabsToolbar{
+        width: calc(var(--toolbar-button-wdt) + 4px) !important;
+        padding-right: 0px !important;
+
+        background-color: var(--tb-col) !important;
+
+        border: var(--outline) !important;
+        outline: var(--shadow) !important;
+
+        &::after{opacity: 0}
+      }
+
+      #PanelUI-menu-button,
+      #unified-extensions-button{
+        margin-right: 2px !important;
+      }
+    }
+
+    /* downloads progress indicator bar */
+    &:has(#downloads-button[progress="true"]){
+      #TabsToolbar::after{
+        background: linear-gradient(
+          to top,
+          var(--shy-color) 0 var(--shy-download-pcent),
+          var(--bt-col) var(--shy-download-pcent) 100%
+        ) !important;
+      }
     }
   }
 }
